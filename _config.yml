@@ -99,8 +99,8 @@ ignore:
 theme: landscape
 
 # Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
+## Docs: https://hexo.io/docs/one-command-deploymen
+deploy
   type: git
   repo: https://github.com/GustavoFringgg/personalprofile
   # example, https://github.com/hexojs/hexojs.github.io
