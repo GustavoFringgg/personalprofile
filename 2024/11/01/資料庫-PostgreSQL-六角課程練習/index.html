@@ -6,19 +6,26 @@
   
   <title>資料庫-PostgreSQL 六角課程練習 | Theodore&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="css 標題googlegooglegooglegooglegooglegooglegooglegooglegooglegoogle   hi   hiwrgwrgwrgwrgwrg   吃飯 睡覺  1var a &#x3D; 10;">
+  <meta name="description" content="前言經過了半年的體驗營，途中經歷了各種前後端的技術洗禮，看到六角推出的後端資料庫體驗營 實在太佛了，所以重拾之前學到的ＨＥＸＯ架站，開始自己的學習文章撰寫紀錄 這是一個 PostgreSQL 的資料庫學習旅程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="資料庫-PostgreSQL 六角課程練習">
 <meta property="og:url" content="https://gustavofringgg.github.io/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/index.html">
 <meta property="og:site_name" content="Theodore&#39;s blog">
-<meta property="og:description" content="css 標題googlegooglegooglegooglegooglegooglegooglegooglegooglegoogle   hi   hiwrgwrgwrgwrgwrg   吃飯 睡覺  1var a &#x3D; 10;">
+<meta property="og:description" content="前言經過了半年的體驗營，途中經歷了各種前後端的技術洗禮，看到六角推出的後端資料庫體驗營 實在太佛了，所以重拾之前學到的ＨＥＸＯ架站，開始自己的學習文章撰寫紀錄 這是一個 PostgreSQL 的資料庫學習旅程">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://images.unsplash.com/photo-1727709350469-5fde916217a8?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==">
+<meta property="og:image" content="https://gustavofringgg.github.io/personalprofile/images/table.jpg">
+<meta property="og:image" content="https://gustavofringgg.github.io/personalprofile/images/datatype.jpg">
+<meta property="og:image" content="https://gustavofringgg.github.io/personalprofile/images/as.jpg">
+<meta property="og:image" content="https://gustavofringgg.github.io/personalprofile/images/3cdatabases.jpg">
+<meta property="og:image" content="https://gustavofringgg.github.io/personalprofile/images/3ccataglory.jpg">
+<meta property="og:image" content="https://gustavofringgg.github.io/personalprofile/images/SQLoperation.jpg">
+<meta property="og:image" content="https://gustavofringgg.github.io/personalprofile/images/goods.jpg">
 <meta property="article:published_time" content="2024-11-01T02:09:59.000Z">
-<meta property="article:modified_time" content="2024-11-01T02:24:57.452Z">
+<meta property="article:modified_time" content="2024-11-01T09:36:08.434Z">
 <meta property="article:author" content="Theodore">
+<meta property="article:tag" content="PostgreSQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1727709350469-5fde916217a8?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==">
+<meta name="twitter:image" content="https://gustavofringgg.github.io/personalprofile/images/table.jpg">
   
     <link rel="alternate" href="/personalprofile/atom.xml" title="Theodore's blog" type="application/atom+xml">
   
@@ -105,41 +112,176 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="css-標題"><a href="#css-標題" class="headerlink" title="css 標題"></a>css 標題</h2><p><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a><br><a target="_blank" rel="noopener" href="https://www.google.com/">google</a></p>
-<p><img src="https://images.unsplash.com/photo-1727709350469-5fde916217a8?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==" alt="圖片"></p>
-<ul>
-<li>hi</li>
-</ul>
-<ul>
-<li>hi<br>wrgwrgwrgwrgwrg</li>
-</ul>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>經過了半年的體驗營，途中經歷了各種前後端的技術洗禮，看到六角推出的後端資料庫體驗營</p>
+<p>實在太佛了，所以重拾之前學到的ＨＥＸＯ架站，開始自己的學習文章撰寫紀錄</p>
+<p>這是一個 PostgreSQL 的資料庫學習旅程</p>
+<span id="more"></span>
+
+<h3 id="什麼是-PostgreSQL"><a href="#什麼是-PostgreSQL" class="headerlink" title="什麼是 PostgreSQL ?"></a><font color=#FF0000>什麼是 PostgreSQL ?</font></h3><p>一種強大的開源關聯式資料庫管理系統（RDBMS），通常簡稱為 “Postgres”。它以強大的功能、穩定性和擴展性聞名，並且支援標準的 SQL 語法，而它有以下特點</p>
 <ol>
-<li>吃飯</li>
-<li>睡覺</li>
+<li><p>資料完整性和高可用性<br>支援事務處理（ACID 原則），能夠保證資料的完整性與一致性，適合需要高安全性和穩定性的應用程式。</p>
+</li>
+<li><p>高擴展性<br>PostgreSQL 支援多種擴展方式，例如可以通過插件系統添加新的功能，也可以自定義資料類型、操作符和函數。</p>
+</li>
+<li><p>豐富的數據類型<br>支援 JSON、XML、地理空間數據（透過 PostGIS 插件）、陣列等複雜數據類型，使得 PostgreSQL 不僅適用於結構化數據，還適合處理半結構化數據。</p>
+</li>
+<li><p>跨平台<br>可以運行在多種操作系統上，例如 Windows、Linux、macOS，因此擁有廣泛的適用性。</p>
+</li>
+<li><p>大規模應用<br>由於其高效能和穩定性，PostgreSQL 被許多大型企業、政府部門和金融機構廣泛採用。</p>
+</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = 10;</span><br></pre></td></tr></table></figure>
+<p>而身為資料庫，<font color=#FF0000>最主要的是由三個結構主成</font></p>
+<ol>
+<li>資料表(table) - 整體資料，包含所有相關資料</li>
+<li>欄位(columns) - 定義資料的屬性，和 Data Type</li>
+<li>資料列(rows) - 橫向的資料集合，代表一筆完整資料</li>
+</ol>
+<p>而資料庫都會與資料庫設計有關，什麼是先? 什麼是後? 這是老師提供非常精美的流程圖</p>
+<p><img src="/personalprofile/images/table.jpg" alt="設計表"></p>
+<p>而這時候我們可以探討資料類型的定義(Data Type)的常用類型<br><img src="/personalprofile/images/datatype.jpg" alt="DataType"></p>
+<p>以目前的學習進度來說，這些常用的類型就綽綽有餘，所以這時候我們就開始學語法</p>
+<h3 id="CREATE-TABLE-新增資料表"><a href="#CREATE-TABLE-新增資料表" class="headerlink" title="CREATE TABLE 新增資料表"></a>CREATE TABLE 新增資料表</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE user(</span><br><span class="line">	name VARCHAR(20),</span><br><span class="line">  	email VARCHAR(50),</span><br><span class="line">  	age INSERT</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>我們先初始化我們想要的資料表，所以建立名稱為 user 的 table</p>
+<ol>
+<li>設定欄位名稱為 name，由字元組成，並可容納 20 個字元</li>
+<li>設定欄位名稱為 email，由字元組成，並可容納 50 個字元</li>
+<li>設定欄位名稱為 age，由數字組成</li>
+</ol>
+<h3 id="INSERT-DATA-新增資料內容"><a href="#INSERT-DATA-新增資料內容" class="headerlink" title="INSERT DATA 新增資料內容"></a>INSERT DATA 新增資料內容</h3><p>建立好資料表之後，就可以來建立資料內容啦<br>這時我們學到第二個語法，就是插入資料(insert)<br><font color=#FF0000>INSERT INTO 資料表名稱</font><br><font color=#FF0000>注意插入類型資料名稱需要使用單引號!，以及程式碼末端需要加 ; 號以示結束</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//插入單筆資料</span><br><span class="line">insert into users (name,email,age)</span><br><span class="line">VALUES(&#x27;小菜&#x27;,&#x27;123@gmail.com&#x27;,18)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//插入多筆資料</span><br><span class="line">insert into users (name,email,age)</span><br><span class="line">VALUES(&#x27;小菜&#x27;,&#x27;123@gmail.com&#x27;,18),</span><br><span class="line">      (&#x27;小華&#x27;,&#x27;123222@gmail.com&#x27;,20),</span><br><span class="line">      (&#x27;小麥&#x27;,&#x27;122@gmail.com&#x27;,27);</span><br></pre></td></tr></table></figure>
+
+<p>而我想插入資料並不是所有人都會用得到，在大公司的運轉下，大多數的人員都需要查詢功能的能力，這時候我們就介紹 SELECT 查詢功能的語法</p>
+<h3 id="SELECT-查詢"><a href="#SELECT-查詢" class="headerlink" title="SELECT 查詢"></a>SELECT 查詢</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 查詢所有欄位( * = 查詢所有欄位，顯示所有查詢後的欄位)</span><br><span class="line">-- 選擇 所有欄位 來自於 users的database</span><br><span class="line">SELECT * FROM users;</span><br><span class="line"></span><br><span class="line">-- 查詢特定欄位(只要姓名跟年齡)</span><br><span class="line">SELECT name,age FROM users;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>這裡提供了基本查詢資料表的語法，而另外老師有教很特別的語法(AS 別名)<br>主要讓資料庫回傳資料時，我們可以用別名做稱，可以更好理解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 查詢會員資料，設定退休年限資訊</span><br><span class="line">SELECT</span><br><span class="line">    name as 姓名,</span><br><span class="line">    age as 現在年齡,</span><br><span class="line">    65 - age AS 距離退休年紀</span><br><span class="line">    FROM</span><br><span class="line"> users</span><br></pre></td></tr></table></figure>
+
+<p>像下圖顯示，我們將資料庫多增加了運算邏輯，真的是有夠方便<br><img src="/personalprofile/images/as.jpg" alt="AS"></p>
+<p>而這時候我們需要大量的資料去練習，老師也給了 3C 電商網站的範例<br><img src="/personalprofile/images/3cdatabases.jpg" alt="電商商品"></p>
+<h3 id="WHERE-篩選"><a href="#WHERE-篩選" class="headerlink" title="WHERE 篩選"></a>WHERE 篩選</h3><p>我們的第一個需求，需要找類別是 3C 的產品</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,price FROM products</span><br><span class="line">where category = &#x27;3C&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>找尋結果就會是這樣<br><img src="/personalprofile/images/3ccataglory.jpg"></p>
+<p>這時候就會有疑問<br><font color=#FF0000>SELECT name,price FROM products</font>代表就是查找資料庫的語法<br>但對資料庫來說，真正執行順序是什麼呢<br>這裡老師也有給予解答~~<br><img src="/personalprofile/images/SQLoperation.jpg"></p>
+<p>發現原來執行的順序是</p>
+<ol>
+<li>搜尋資料表</li>
+<li>設定篩選條件 where</li>
+<li>select 欄位名稱搜尋</li>
+</ol>
+<p>資料庫的執行順序並不是我們所輸入的語法順序而定</p>
+<p>這時候回到篩選語法 where，我們除了篩選名稱之外，也可以透過比較運算子，去篩選出價格的區間，我們可以透過情境題去練習</p>
+<p>情境 1:想知道那些商品快沒貨了，有沒有庫存小於 50 的商品</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT name, stock</span><br><span class="line">FROM products</span><br><span class="line">WHERE stock &lt;50;</span><br></pre></td></tr></table></figure>
+
+<p>情境 2:想知道已經”上架”的”3C”產品<br>使用 AND &#x3D; 左右條件都符合 OR 左右條件之一符合</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,price,stock</span><br><span class="line">FROM products</span><br><span class="line">WHERE status =&#x27;active&#x27;</span><br><span class="line">AND category =&#x27;3C&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>情境 3: 想幫家人買禮物，預算在 500~1000 元</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM products</span><br><span class="line">WHERE discount_price BETWEEN 500 AND 1000;</span><br></pre></td></tr></table></figure>
+
+<p>情境 4: 想找出特定商品</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM products</span><br><span class="line">WHERE category IN (&#x27;3C&#x27;,&#x27;配件&#x27;) --在category尋找3C跟配件的類別</span><br></pre></td></tr></table></figure>
+
+<p>情境 5: 想要排出商品(充電線、手機殼)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM products</span><br><span class="line">WHERE name NOT IN (&#x27;充電線&#x27;,&#x27;手機殼&#x27;) --在category尋找3C跟配件的類別</span><br></pre></td></tr></table></figure>
+
+<p>我們一般日常用到新增&#x2F;查詢，自然也會有 UPDATE(更新)跟 DELETE(刪除)語法</p>
+<h3 id="UPDATE-更新欄位"><a href="#UPDATE-更新欄位" class="headerlink" title="UPDATE 更新欄位"></a>UPDATE 更新欄位</h3><p>一樣我們直接用情境來練習<br>情境 1:調整特定商品價格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">--更改IPHONE16的價格為28000</span><br><span class="line">UPDATE products</span><br><span class="line">SET price =28000</span><br><span class="line">WHERE name = &#x27;iPhone 16&#x27;</span><br><span class="line"></span><br><span class="line">--更改多樣欄位</span><br><span class="line">UPDATE products</span><br><span class="line">SET price =28000,</span><br><span class="line">    name = &#x27;iPhone 16 PLUS&#x27;</span><br><span class="line">WHERE name = &#x27;iPhone 16&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>情境 2:更新庫存:增加數量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE products</span><br><span class="line">SET stock = stock + 50</span><br><span class="line">WHERE name = &#x27;充電線&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="DELETE-刪除欄位"><a href="#DELETE-刪除欄位" class="headerlink" title="DELETE 刪除欄位"></a>DELETE 刪除欄位</h3><p>情境 1: 單筆刪除:刪除特定商品</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM products</span><br><span class="line">WHERE name = &#x27;iPhone 15&#x27;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>情境 2: 條件刪除:刪除類別為 3C 的產品</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM products</span><br><span class="line">WHERE category = &#x27;3C&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>情境 3: 條件刪除:多重條件刪除:刪除沒庫存且已下架的商品<br>我們可以先調整庫存</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">--調整庫存</span><br><span class="line">update products</span><br><span class="line">set</span><br><span class="line">	stock = 0,</span><br><span class="line">    status =&#x27;inactive&#x27;</span><br><span class="line">WHERE name = &#x27;手機殼&#x27;;</span><br><span class="line"></span><br><span class="line">--刪除沒庫存且已下架的商品</span><br><span class="line">DELETE FROM products</span><br><span class="line">WHERE stock = 0 AND status =&#x27;inactive&#x27;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="接下來，校長總共出了-15-道題目，讓我們依序來解題"><a href="#接下來，校長總共出了-15-道題目，讓我們依序來解題" class="headerlink" title="接下來，校長總共出了 15 道題目，讓我們依序來解題"></a>接下來，校長總共出了 15 道題目，讓我們依序來解題</h1><h2 id="模擬資料"><a href="#模擬資料" class="headerlink" title="模擬資料"></a>模擬資料</h2><p><img src="/personalprofile/images/goods.jpg" alt="模擬資料"></p>
+<p>如果考量有沒有上下架，程式碼會變得很冗長，故先忽略產品的 status 狀態，active or inactive 因素</p>
+<h4 id="情境-1：單品查詢"><a href="#情境-1：單品查詢" class="headerlink" title="情境 1：單品查詢"></a>情境 1：單品查詢</h4><p>客人：「這張北歐風雙人沙發多少錢？」<br>小美想查：想找到這張沙發的價格和庫存</p>
+<p>這時候要釐清小美的需求: 1.名字為北歐風雙人沙發 2.價格 3.庫存<br>所以我需要顯示此三個欄位，故為 SELECT <font color=#FF0000>name , price , stock</font><br>而篩選的條件就是名字為<font color=#FF0000>北歐風雙人沙發</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT name , price, stock FROM goods</span><br><span class="line">WHERE name = &#x27;北歐風雙人沙發&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="情境-2：單品查詢"><a href="#情境-2：單品查詢" class="headerlink" title="情境 2：單品查詢"></a>情境 2：單品查詢</h4><p>客人：「請列出 5000 元以下的櫃子有哪些？」<br>小美想查：找出櫃子類且價格在 5000 以下的商品</p>
+<p>第一步要先釐清需求，我們需要 1.低於 5000 2.種類為櫃子的商品<br>我們需要從所有商品開始查找，所以為 SELECT * FROM goods 開始<br>篩選條件為種類是櫃子和價格需要低於 5000 去設定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM goods</span><br><span class="line">WHERE category = &#x27;櫃子&#x27; AND price &lt; 5000;</span><br></pre></td></tr></table></figure>
+
+<h4 id="情境-3：庫存確認"><a href="#情境-3：庫存確認" class="headerlink" title="情境 3：庫存確認"></a>情境 3：庫存確認</h4><p>客人：「日式雙人床架還有貨嗎？」<br>小美想查：確認日式雙人床架的庫存狀況</p>
+<p>釐清需求:確認日是雙人床價的庫存，所以顯示條件為 name,stock</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,stock FROM goods</span><br><span class="line">WHERE name = &#x27;日式雙人床架&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="邏輯運算-AND："><a href="#邏輯運算-AND：" class="headerlink" title="邏輯運算 AND："></a>邏輯運算 AND：</h4><h4 id="情境-4：庫存確認"><a href="#情境-4：庫存確認" class="headerlink" title="情境 4：庫存確認"></a>情境 4：庫存確認</h4><p>客人：「想找 4 萬以下，而且有現貨的沙發」<br>小美想查：要同時符合：是沙發、4 萬以下、有庫存</p>
+<p>需求為: 同時符合 1. 沙發 2.價格 4 萬以下 3.有庫存<br>我們使用 AND 同時滿足三個條件，得到的條件是北歐風雙人沙發</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM goods</span><br><span class="line">WHERE category = &#x27;沙發&#x27; AND price &lt;40000 AND stock&gt; 0;</span><br></pre></td></tr></table></figure>
+
+<h3 id="情境-5：特價且有貨"><a href="#情境-5：特價且有貨" class="headerlink" title="情境 5：特價且有貨"></a>情境 5：特價且有貨</h3><p>客人：「沙發有哪些特價且現貨的品項？」<br>小美想查：要找到沙發類且有特價（原價大於優惠價）且還有庫存的商品</p>
+<p>需求為:同時符合 1. 特價(原價大於優惠價) 2. 有庫存的商品的沙發</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM goods</span><br><span class="line">WHERE category = &#x27;沙發&#x27; AND discount_price &lt; price  AND stock &gt; 0;</span><br></pre></td></tr></table></figure>
+
+<h3 id="邏輯運算-OR："><a href="#邏輯運算-OR：" class="headerlink" title="邏輯運算 OR："></a>邏輯運算 OR：</h3><h3 id="情境-6：多分類查詢"><a href="#情境-6：多分類查詢" class="headerlink" title="情境 6：多分類查詢"></a>情境 6：多分類查詢</h3><p>客人：「我要找櫃子或桌子」<br>小美想查：要找出櫃子類或桌子類的商品</p>
+<p>這裡的需求只要櫃子或桌子 所以我們用 OR，兩者之一只藥都有類別都可以顯示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM goods</span><br><span class="line">WHERE category = &#x27;桌子&#x27;  OR  category = &#x27;櫃子&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="情境-7：指定商品"><a href="#情境-7：指定商品" class="headerlink" title="情境 7：指定商品"></a>情境 7：指定商品</h3><p>客人：「北歐風雙人沙發和貓抓皮 L 型沙發哪個還有貨？」<br>小美想查：要找出這兩張特定沙發的庫存狀況</p>
+<p>需求: 需要知道此沙發的庫存，所以顯示名稱跟庫存狀態</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,stock FROM goods</span><br><span class="line">WHERE name = &#x27;北歐風雙人沙發&#x27;  OR  name = &#x27;貓抓皮L型沙發&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="IN-運算："><a href="#IN-運算：" class="headerlink" title="IN 運算："></a>IN 運算：</h3><h3 id="情境-8：多分類查詢"><a href="#情境-8：多分類查詢" class="headerlink" title="情境 8：多分類查詢"></a>情境 8：多分類查詢</h3><p>客人：「客廳的家具有哪些？我要看沙發、櫃子跟桌子」<br>小美想查：要找出沙發、櫃子和桌子這三種分類的商品</p>
+<p>需求:在類別裡有沙發、櫃子和桌子，可以用 IN 去篩選條件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM products</span><br><span class="line">WHERE category IN (&#x27;沙發&#x27;,&#x27;櫃子&#x27;,&#x27;桌子&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="情境-9：特定商品"><a href="#情境-9：特定商品" class="headerlink" title="情境 9：特定商品"></a>情境 9：特定商品</h3><p>客人：「電腦辦公椅和餐椅四入組的價格是多少？」<br>小美想查：要找出這兩款椅子的價格</p>
+<p>需求: 找到名字為電腦辦公椅以及餐椅四人組的價格(有庫存最好)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT name,price,stock FROM products</span><br><span class="line">WHERE name IN (&#x27;電腦辦公椅&#x27;,&#x27;餐椅四入組&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="BETWEEN："><a href="#BETWEEN：" class="headerlink" title="BETWEEN："></a>BETWEEN：</h3><h3 id="情境-10：特定商品"><a href="#情境-10：特定商品" class="headerlink" title="情境 10：特定商品"></a>情境 10：特定商品</h3><p>客人：「想找 10000 到 20000 之間的商品有哪些？」<br>小美想查：列出這個價格區間的所有商品</p>
+<p>需求，使用 BETWEEN 找出價格區間所有的商品</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM products</span><br><span class="line">WHERE price BETWEEN 10000 AND 20000;</span><br></pre></td></tr></table></figure>
+
+<h3 id="情境-11：庫存區間"><a href="#情境-11：庫存區間" class="headerlink" title="情境 11：庫存區間"></a>情境 11：庫存區間</h3><p>主管：「請列出庫存在 5 到 15 之間的商品」<br>小美想查：列出庫存數量在這個範圍的商品</p>
+<p>呈上提，裡用 BETWEEN 做區間篩選</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM products</span><br><span class="line">WHERE stock BETWEEN 5 AND 15;</span><br></pre></td></tr></table></figure>
+
+<h3 id="NOT-IN："><a href="#NOT-IN：" class="headerlink" title="NOT IN："></a>NOT IN：</h3><h3 id="情境-12：排除商品"><a href="#情境-12：排除商品" class="headerlink" title="情境 12：排除商品"></a>情境 12：排除商品</h3><p>主管：「列出除了沙發和床架以外的商品」<br>小美想查：要找出不是沙發和床架的商品</p>
+<p>需求: 這裡使用排除，所以用 NOT IN，記得篩選的主要條件改為 category</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM products</span><br><span class="line">WHERE category NOT IN (&#x27;沙發&#x27;,&#x27;床架&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新和刪除："><a href="#更新和刪除：" class="headerlink" title="更新和刪除："></a>更新和刪除：</h3><h3 id="情境-13：調整價格"><a href="#情境-13：調整價格" class="headerlink" title="情境 13：調整價格"></a>情境 13：調整價格</h3><p>主管：「北歐風雙人沙發要調降 2000 元」<br>小美想查：要如何更新這張沙發的價格</p>
+<p>需求: 將特定物件價格調降 2000<br>這裡要注意，使用 UPDATE DATABASE<br>然後 set price &#x3D; price -2000 (我不知道原始價格多少，但我知道要調降 2000)</p>
+<p>再使用 SELECT * FROM 　 goods 發現北歐風雙人沙發由 39900 &#x3D;&gt; 37900</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE goods</span><br><span class="line">SET price =price -2000</span><br><span class="line">WHERE name = &#x27;北歐風雙人沙發&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="情境-14：更新庫存"><a href="#情境-14：更新庫存" class="headerlink" title="情境 14：更新庫存"></a>情境 14：更新庫存</h3><p>主管：「電腦辦公椅進了 5 張」<br>小美想查：要如何增加這款椅子的庫存數量</p>
+<p>需求: 將特定款的庫存增加，一樣如同上方的題目，我用 stock &#x3D; stock + 5 增加庫存<br>庫存將由 20&#x3D;&gt;25</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE goods</span><br><span class="line">SET stock = stock +5</span><br><span class="line">WHERE name = &#x27;電腦辦公椅&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="情境-15：清除資料"><a href="#情境-15：清除資料" class="headerlink" title="情境 15：清除資料"></a>情境 15：清除資料</h3><p>主管：「要清掉兒童床架和電競書桌的資料」<br>小美想查：要如何刪除這兩項商品</p>
+<p>需求:刪掉特定產品，是兩者皆要刪除 所以可以使用 OR，也可以使用 IN</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM goods;</span><br><span class="line">WHERE name = &#x27;兒童床架&#x27; OR name = &#x27;電競書桌&#x27;;</span><br><span class="line"></span><br><span class="line">或使用IN</span><br><span class="line">DELETE FROM goods;</span><br><span class="line">WHERE name IN = (&#x27;兒童床架,&#x27;電競書桌&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://gustavofringgg.github.io/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/" data-id="cm2y5lwqw0001h0tme0l90p7d" data-title="資料庫-PostgreSQL 六角課程練習" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://gustavofringgg.github.io/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/" data-id="cm2yjkstk0001qgtmdwhveg12" data-title="資料庫-PostgreSQL 六角課程練習" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/personalprofile/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li></ul>
+
     </footer>
   </div>
   
     
-<nav id="article-nav">
-  
-  
-    <a href="/personalprofile/2024/05/28/0528%E5%AD%B8%E7%BF%92/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">0528學習</div>
-    </a>
-  
-</nav>
-
   
 </article>
 
@@ -155,7 +297,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">標籤</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/personalprofile/tags/%E5%AD%B8%E7%BF%92/" rel="tag">學習</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/personalprofile/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li></ul>
     </div>
   </div>
 
@@ -165,7 +307,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">標籤雲</h3>
     <div class="widget tagcloud">
-      <a href="/personalprofile/tags/%E5%AD%B8%E7%BF%92/" style="font-size: 10px;">學習</a>
+      <a href="/personalprofile/tags/PostgreSQL/" style="font-size: 10px;">PostgreSQL</a>
     </div>
   </div>
 
@@ -174,7 +316,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">彙整</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/personalprofile/archives/2024/11/">十一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/personalprofile/archives/2024/05/">五月 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/personalprofile/archives/2024/11/">十一月 2024</a></li></ul>
     </div>
   </div>
 
@@ -188,10 +330,6 @@
         
           <li>
             <a href="/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/">資料庫-PostgreSQL 六角課程練習</a>
-          </li>
-        
-          <li>
-            <a href="/personalprofile/2024/05/28/0528%E5%AD%B8%E7%BF%92/">0528學習</a>
           </li>
         
       </ul>
