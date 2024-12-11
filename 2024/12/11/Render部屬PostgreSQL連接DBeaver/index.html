@@ -4,17 +4,26 @@
   <meta charset="utf-8">
   
   
-  <title>Theodore&#39;s blog</title>
+  <title>Render部屬PostgreSQL連接DBeaver | Theodore&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="包含前後端，讀書心得的地方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Theodore&#39;s blog">
-<meta property="og:url" content="https://gustavofringgg.github.io/personalprofile/index.html">
+  <meta name="description" content="前言要把小專案的 side project 資料庫從 mongoDB 移到 PostgreSQL 上當初想說應該沒有很困難，但果然傳聞說環境設定最麻煩…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Render部屬PostgreSQL連接DBeaver">
+<meta property="og:url" content="https://gustavofringgg.github.io/personalprofile/2024/12/11/Render%E9%83%A8%E5%B1%ACPostgreSQL%E9%80%A3%E6%8E%A5DBeaver/index.html">
 <meta property="og:site_name" content="Theodore&#39;s blog">
-<meta property="og:description" content="包含前後端，讀書心得的地方">
+<meta property="og:description" content="前言要把小專案的 side project 資料庫從 mongoDB 移到 PostgreSQL 上當初想說應該沒有很困難，但果然傳聞說環境設定最麻煩…">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2Frender.jpg?alt=media&token=04666869-517d-41bd-9d86-f5d7e50de89a">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2FDBeaver.jpg?alt=media&token=87d45d06-2cf7-4e8d-85da-529baaae46de">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2F1733928869828.jpg?alt=media&token=6151a54f-9c45-4cad-94fb-9e3690167177">
+<meta property="article:published_time" content="2024-12-11T14:59:29.000Z">
+<meta property="article:modified_time" content="2024-12-11T15:25:16.710Z">
 <meta property="article:author" content="Theodore">
+<meta property="article:tag" content="PostgreSQL">
+<meta property="article:tag" content="Render">
+<meta property="article:tag" content="DBeaver">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2Frender.jpg?alt=media&token=04666869-517d-41bd-9d86-f5d7e50de89a">
   
     <link rel="alternate" href="/personalprofile/atom.xml" title="Theodore's blog" type="application/atom+xml">
   
@@ -79,9 +88,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Render部屬PostgreSQL連接DBeaver" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Render部屬PostgreSQL連接DBeaver" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/personalprofile/2024/12/11/Render%E9%83%A8%E5%B1%ACPostgreSQL%E9%80%A3%E6%8E%A5DBeaver/" class="article-date">
   <time class="dt-published" datetime="2024-12-11T14:59:29.000Z" itemprop="datePublished">2024-12-11</time>
@@ -94,8 +101,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/personalprofile/2024/12/11/Render%E9%83%A8%E5%B1%ACPostgreSQL%E9%80%A3%E6%8E%A5DBeaver/">Render部屬PostgreSQL連接DBeaver</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Render部屬PostgreSQL連接DBeaver
     </h1>
   
 
@@ -104,11 +111,25 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>要把小專案的 side project 資料庫從 mongoDB 移到 PostgreSQL 上<br>當初想說應該沒有很困難，但果然傳聞說環境設定最麻煩…</p>
-        
-          <p class="article-more-link">
-            <a href="/personalprofile/2024/12/11/Render%E9%83%A8%E5%B1%ACPostgreSQL%E9%80%A3%E6%8E%A5DBeaver/#more">Read More</a>
-          </p>
-        
+<span id="more"></span>
+
+<p>光登入填入資料就花了我很多的時間，怎麼試都不行<br>趁記憶猶新，趕緊來記錄一下</p>
+<p>–</p>
+<p>首先我們為了要部屬 PostgreSQL，直接上 render 註冊並開啟專案<br>最後他會給你一組私人金鑰</p>
+<img src="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2Frender.jpg?alt=media&token=04666869-517d-41bd-9d86-f5d7e50de89a" alt="範例圖" width="800">
+
+<p>紅框中的資料都是會需要用到的，等等會說怎麼套用上 DBeaver</p>
+<p>隨後開啟 DBeaver，開啟連線，並輸入 render 先前提供的金鑰</p>
+<img src="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2FDBeaver.jpg?alt=media&token=87d45d06-2cf7-4e8d-85da-529baaae46de" alt="範例圖"  width="800">
+
+<p>DBeaver Database &#x3D; render 的 Database (碼了前面忘記後面)<br>DBeaver Username &#x3D; render 的 Username<br>DBeaver password &#x3D; render 的 password</p>
+<p>這裡最重要的就是那個 Host，起初以為跟 render 的 Hostname 一樣(菜就該死)<br>怎麼試都不對，GPT 不行，render 社群不行，stackoverflow 也不是我要的<br>結果最後在一個葡萄牙小哥的 youtube 影片上找到答案…</p>
+<p><font color=#FF0000>DBeaver 所需要的 Host 就在 render 的 PSQL Command 裡</font><br>他的組成會是這樣<br>PGPASSWORD&#x3D; 你的密碼 psql -h <font color=#FF0000>你的 Host</font> -U 你的 Username 你的 Database</p>
+<p>接著把 render 給你的 Host 填入 DBeaver 的 Host，就連線成功了</p>
+<img src="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2F1733928869828.jpg?alt=media&token=6151a54f-9c45-4cad-94fb-9e3690167177" alt="範例圖"  width="800">
+
+<p>只能說當下真的是有滿滿的感動，此篇記錄了自己的學習過程，也希望能幫助到需要幫助的人</p>
+
       
     </div>
     <footer class="article-footer">
@@ -121,104 +142,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-資料庫-PostgreSQL-六角課程練習" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/" class="article-date">
-  <time class="dt-published" datetime="2024-11-01T02:09:59.000Z" itemprop="datePublished">2024-11-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/">資料庫-PostgreSQL 六角課程練習</a>
-    </h1>
+    <a href="/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">資料庫-PostgreSQL 六角課程練習</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>經過了半年的體驗營，途中經歷了各種前後端的技術洗禮，看到六角推出的後端資料庫體驗營</p>
-<p>實在太佛了，所以重拾之前學到的ＨＥＸＯ架站，開始自己的學習文章撰寫紀錄</p>
-<p>這是一個 PostgreSQL 的資料庫學習旅程</p>
-        
-          <p class="article-more-link">
-            <a href="/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://gustavofringgg.github.io/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/" data-id="cm4k1sobc000a0stm6zux0fob" data-title="資料庫-PostgreSQL 六角課程練習" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/personalprofile/tags/PostgreSQL/" rel="tag">PostgreSQL</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-網路基礎概論" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/personalprofile/2024/08/01/%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E8%AB%96/" class="article-date">
-  <time class="dt-published" datetime="2024-08-01T14:29:11.000Z" itemprop="datePublished">2024-08-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/personalprofile/2024/08/01/%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E8%AB%96/">當你輸入一個網址的時候，會發生什麼事?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://plus.unsplash.com/premium_photo-1685086785077-ff65bf749544?q=80&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA=="></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>此篇為先前記錄自己的學習旅程，也謝謝洧杰校長的課程，也謝謝諸多願意分享知識的文章<br>我們來聊聊，輸入網址的過程</p>
-        
-          <p class="article-more-link">
-            <a href="/personalprofile/2024/08/01/%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E8%AB%96/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://gustavofringgg.github.io/personalprofile/2024/08/01/%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E8%AB%96/" data-id="cm4k1sobb00090stm8s2wg7q7" data-title="當你輸入一個網址的時候，會發生什麼事?" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/personalprofile/tags/%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E8%AB%96/" rel="tag">網路基礎概論</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
