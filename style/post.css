@@ -87,6 +87,7 @@
 .post-page .toc ol {
   margin-top: 5px;
   margin-left: 15px;
+  list-style: none !important;
 }
 .post-page .toc .is-active span {
   color: #3273dc !important;
