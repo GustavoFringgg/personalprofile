@@ -1,0 +1,45 @@
+<!DOCTYPE html><html class="appearance-dark" lang="zh-TW"><head><meta charset="UTF-8"><title>Render部屬PostgreSQL連接DBeaver</title><meta name="description" content="包含前端、後端，讀書心得的地方"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/personalprofile/images/favicon.ico"><link rel="stylesheet" href="/personalprofile/style/common/bulma.css"><link rel="stylesheet" href="/personalprofile/style/base.css"><link rel="stylesheet" href="/personalprofile/style/common/helper.css"><script src="/personalprofile/js/common.js"></script><link rel="stylesheet" href="/personalprofile/style/post.css"><link rel="stylesheet" href="/personalprofile/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/personalprofile/style/common/jquery.fancybox.min.css"><script src="/personalprofile/js/highlight.pack.js"></script><meta name="description" content="前言要把小專案的 side project 資料庫從 mongoDB 移到 PostgreSQL 上當初想說應該沒有很困難，但果然傳聞說環境設定最麻煩…
+
+
+光登入填入資料就花了我很多的時間，怎麼試都不行趁記憶猶新，趕緊來記錄一下
+–
+sample.js 測試var foo = function (bar) &amp;#123;
+  return bar++;
+&amp;#125;;
+
+console.log(foo(5));
+
+首先我們為了要部屬 PostgreSQL，直接上 render 註冊並開啟專案最後他會給你一組私人金鑰
+
+
+紅框中的資料都是會需要用到的，等等會說怎麼套用上 DBeaver
+隨後開啟 DBeaver，開啟連線，並輸入 render 先前提供的金鑰
+
+
+DBeaver Database &amp;#x3D;.."><meta name="generator" content="Hexo 7.2.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/personalprofile/">秉宏's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Render部屬PostgreSQL連接DBeaver</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/personalprofile/">Home</a></h3><h3 class="is-inline-block"><a href="/personalprofile/about">about</a></h3><h3 class="is-inline-block"><a href="/personalprofile/archives">archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/personalprofile/">Home</a></h3><h3 class="is-inline-block"><a href="/personalprofile/about">about</a></h3><h3 class="is-inline-block"><a href="/personalprofile/archives">archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/personalprofile/tags/PostgreSQL"><i class="tag post-item-tag">PostgreSQL</i></a><a href="/personalprofile/tags/Render"><i class="tag post-item-tag">Render</i></a><a href="/personalprofile/tags/DBeaver"><i class="tag post-item-tag">DBeaver</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">Render部屬PostgreSQL連接DBeaver</h1><time class="has-text-grey" datetime="2024-12-11T14:59:29.000Z">2024-12-11</time><article class="mt-2 post-content"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>要把小專案的 side project 資料庫從 mongoDB 移到 PostgreSQL 上<br>當初想說應該沒有很困難，但果然傳聞說環境設定最麻煩…</p>
+<span id="more"></span>
+
+<p>光登入填入資料就花了我很多的時間，怎麼試都不行<br>趁記憶猶新，趕緊來記錄一下</p>
+<p>–</p>
+<pre><div class="caption"><span>sample.js 測試</span></div><code class="hljs js"><span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">function</span> (<span class="hljs-params">bar</span>) &#123;
+  <span class="hljs-keyword">return</span> bar++;
+&#125;;
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">foo</span>(<span class="hljs-number">5</span>));</code></pre>
+
+<p>首先我們為了要部屬 PostgreSQL，直接上 render 註冊並開啟專案<br>最後他會給你一組私人金鑰</p>
+<img src="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2Frender.jpg?alt=media&token=04666869-517d-41bd-9d86-f5d7e50de89a" alt="範例圖" width="800">
+
+<p>紅框中的資料都是會需要用到的，等等會說怎麼套用上 DBeaver</p>
+<p>隨後開啟 DBeaver，開啟連線，並輸入 render 先前提供的金鑰</p>
+<img src="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2FDBeaver.jpg?alt=media&token=87d45d06-2cf7-4e8d-85da-529baaae46de" alt="範例圖"  width="800">
+
+<p>DBeaver Database &#x3D; render 的 Database (碼了前面忘記後面)<br>DBeaver Username &#x3D; render 的 Username<br>DBeaver password &#x3D; render 的 password</p>
+<p>這裡最重要的就是那個 Host，起初以為跟 render 的 Hostname 一樣(菜就該死)<br>怎麼試都不對，GPT 不行，render 社群不行，stackoverflow 也不是我要的<br>結果最後在一個葡萄牙小哥的 youtube 影片上找到答案…</p>
+<p><font color=#FF0000>DBeaver 所需要的 Host 就在 render 的 PSQL Command 裡</font><br>他的組成會是這樣<br>PGPASSWORD&#x3D; 你的密碼 psql -h <font color=#FF0000>你的 Host</font> -U 你的 Username 你的 Database</p>
+<p>接著把 render 給你的 Host 填入 DBeaver 的 Host，就連線成功了</p>
+<img src="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2F1733928869828.jpg?alt=media&token=6151a54f-9c45-4cad-94fb-9e3690167177" alt="範例圖"  width="800">
+
+<p>只能說當下真的是有滿滿的感動，此篇記錄了自己的學習過程，也希望能幫助到需要幫助的人</p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/personalprofile/2025/01/26/%E4%BB%80%E9%BA%BC%E6%98%AF-SDLC-%E8%BB%9F%E9%AB%94%E9%96%8B%E7%99%BC%E7%94%9F%E5%91%BD%E9%80%B1%E6%9C%9F-%EF%BC%9F/" title="SDLC大解惑 (軟體開發生命週期)？"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: SDLC大解惑 (軟體開發生命週期)？</span></a><a class="button is-default" href="/personalprofile/2024/11/01/%E8%B3%87%E6%96%99%E5%BA%AB-PostgreSQL-%E5%85%AD%E8%A7%92%E8%AA%B2%E7%A8%8B%E7%B7%B4%E7%BF%92/" title="資料庫-PostgreSQL 六角課程練習"><span class="has-text-weight-semibold">Next: 資料庫-PostgreSQL 六角課程練習</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="https://github.com/GustavoFringgg/personalprofile" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/GustavoFringgg"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com/noreg0361957"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><a title="linkedin" target="_blank" rel="noopener nofollow" href="//www.linkedin.com/in/Derek-Tsai"><i class="iconfont icon-linkedin"></i></a><!-- 脸书--></section><p><span>Copyright ©</span><span> 秉宏 2025</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/personalprofile/js/jquery-3.6.1.min.js"></script><script src="/personalprofile/js/jquery-fancybox.min.js"></script><script src="/personalprofile/js/img_zoom.js"></script><script src="/personalprofile/js/post.js"></script></body></html>

@@ -1,0 +1,12 @@
+.about-page {
+  height: 80%;
+}
+.about-page aside img {
+  width: 80%;
+  height: auto;
+  padding: 5px;
+  border-radius: 50%;
+}
+.about-page .about-title {
+  font-weight: normal;
+}

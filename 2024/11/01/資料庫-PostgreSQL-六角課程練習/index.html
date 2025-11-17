@@ -1,0 +1,248 @@
+<!DOCTYPE html><html class="appearance-dark" lang="zh-TW"><head><meta charset="UTF-8"><title>資料庫-PostgreSQL 六角課程練習</title><meta name="description" content="包含前端、後端，讀書心得的地方"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/personalprofile/images/favicon.ico"><link rel="stylesheet" href="/personalprofile/style/common/bulma.css"><link rel="stylesheet" href="/personalprofile/style/base.css"><link rel="stylesheet" href="/personalprofile/style/common/helper.css"><script src="/personalprofile/js/common.js"></script><link rel="stylesheet" href="/personalprofile/style/post.css"><link rel="stylesheet" href="/personalprofile/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/personalprofile/style/common/jquery.fancybox.min.css"><script src="/personalprofile/js/highlight.pack.js"></script><meta name="description" content="前言經過了半年的體驗營，途中經歷了各種前後端的技術洗禮，看到六角推出的後端資料庫體驗營
+實在太佛了，所以重拾之前學到的ＨＥＸＯ架站，開始自己的學習文章撰寫紀錄
+這是一個 PostgreSQL 的資料庫學習旅程
+
+
+什麼是 PostgreSQL ?一種強大的開源關聯式資料庫管理系統（RDBMS），通常簡稱為 “Postgres”。它以強大的功能、穩定性和擴展性聞名，並且支援標準的 SQL 語法，而它有以下特點
+
+資料完整性和高可用性支援事務處理（ACID 原則），能夠保證資料的完整性與一致性，適合需要高安全性和穩定性的應用程式。
+
+高擴展性PostgreSQL 支援多種擴展方式，例如可以通過插件系統添加新的功能，也可以自定義資料類型、操作符和函數。
+
+豐富的數據類型支援 JSON、XML、地理空間數據（透過 .."><meta name="generator" content="Hexo 7.2.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/personalprofile/">秉宏's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">資料庫-PostgreSQL 六角課程練習</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/personalprofile/">Home</a></h3><h3 class="is-inline-block"><a href="/personalprofile/about">about</a></h3><h3 class="is-inline-block"><a href="/personalprofile/archives">archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/personalprofile/">Home</a></h3><h3 class="is-inline-block"><a href="/personalprofile/about">about</a></h3><h3 class="is-inline-block"><a href="/personalprofile/archives">archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AF-PostgreSQL"><span class="toc-text">什麼是 PostgreSQL ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CREATE-TABLE-%E6%96%B0%E5%A2%9E%E8%B3%87%E6%96%99%E8%A1%A8"><span class="toc-text">CREATE TABLE 新增資料表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#INSERT-DATA-%E6%96%B0%E5%A2%9E%E8%B3%87%E6%96%99%E5%85%A7%E5%AE%B9"><span class="toc-text">INSERT DATA 新增資料內容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SELECT-%E6%9F%A5%E8%A9%A2"><span class="toc-text">SELECT 查詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WHERE-%E7%AF%A9%E9%81%B8"><span class="toc-text">WHERE 篩選</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UPDATE-%E6%9B%B4%E6%96%B0%E6%AC%84%E4%BD%8D"><span class="toc-text">UPDATE 更新欄位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DELETE-%E5%88%AA%E9%99%A4%E6%AC%84%E4%BD%8D"><span class="toc-text">DELETE 刪除欄位</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E4%B8%8B%E4%BE%86%EF%BC%8C%E6%A0%A1%E9%95%B7%E7%B8%BD%E5%85%B1%E5%87%BA%E4%BA%86-15-%E9%81%93%E9%A1%8C%E7%9B%AE%EF%BC%8C%E8%AE%93%E6%88%91%E5%80%91%E4%BE%9D%E5%BA%8F%E4%BE%86%E8%A7%A3%E9%A1%8C"><span class="toc-text">接下來，校長總共出了 15 道題目，讓我們依序來解題</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%93%AC%E8%B3%87%E6%96%99"><span class="toc-text">模擬資料</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83-1%EF%BC%9A%E5%96%AE%E5%93%81%E6%9F%A5%E8%A9%A2"><span class="toc-text">情境 1：單品查詢</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83-2%EF%BC%9A%E5%96%AE%E5%93%81%E6%9F%A5%E8%A9%A2"><span class="toc-text">情境 2：單品查詢</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83-3%EF%BC%9A%E5%BA%AB%E5%AD%98%E7%A2%BA%E8%AA%8D"><span class="toc-text">情境 3：庫存確認</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97-AND%EF%BC%9A"><span class="toc-text">邏輯運算 AND：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%A2%83-4%EF%BC%9A%E5%BA%AB%E5%AD%98%E7%A2%BA%E8%AA%8D"><span class="toc-text">情境 4：庫存確認</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-5%EF%BC%9A%E7%89%B9%E5%83%B9%E4%B8%94%E6%9C%89%E8%B2%A8"><span class="toc-text">情境 5：特價且有貨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97-OR%EF%BC%9A"><span class="toc-text">邏輯運算 OR：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-6%EF%BC%9A%E5%A4%9A%E5%88%86%E9%A1%9E%E6%9F%A5%E8%A9%A2"><span class="toc-text">情境 6：多分類查詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-7%EF%BC%9A%E6%8C%87%E5%AE%9A%E5%95%86%E5%93%81"><span class="toc-text">情境 7：指定商品</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IN-%E9%81%8B%E7%AE%97%EF%BC%9A"><span class="toc-text">IN 運算：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-8%EF%BC%9A%E5%A4%9A%E5%88%86%E9%A1%9E%E6%9F%A5%E8%A9%A2"><span class="toc-text">情境 8：多分類查詢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-9%EF%BC%9A%E7%89%B9%E5%AE%9A%E5%95%86%E5%93%81"><span class="toc-text">情境 9：特定商品</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BETWEEN%EF%BC%9A"><span class="toc-text">BETWEEN：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-10%EF%BC%9A%E7%89%B9%E5%AE%9A%E5%95%86%E5%93%81"><span class="toc-text">情境 10：特定商品</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-11%EF%BC%9A%E5%BA%AB%E5%AD%98%E5%8D%80%E9%96%93"><span class="toc-text">情境 11：庫存區間</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOT-IN%EF%BC%9A"><span class="toc-text">NOT IN：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-12%EF%BC%9A%E6%8E%92%E9%99%A4%E5%95%86%E5%93%81"><span class="toc-text">情境 12：排除商品</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E5%92%8C%E5%88%AA%E9%99%A4%EF%BC%9A"><span class="toc-text">更新和刪除：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-13%EF%BC%9A%E8%AA%BF%E6%95%B4%E5%83%B9%E6%A0%BC"><span class="toc-text">情境 13：調整價格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-14%EF%BC%9A%E6%9B%B4%E6%96%B0%E5%BA%AB%E5%AD%98"><span class="toc-text">情境 14：更新庫存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%85%E5%A2%83-15%EF%BC%9A%E6%B8%85%E9%99%A4%E8%B3%87%E6%96%99"><span class="toc-text">情境 15：清除資料</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/personalprofile/tags/PostgreSQL"><i class="tag post-item-tag">PostgreSQL</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">資料庫-PostgreSQL 六角課程練習</h1><time class="has-text-grey" datetime="2024-11-01T02:09:59.000Z">2024-11-01</time><article class="mt-2 post-content"><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>經過了半年的體驗營，途中經歷了各種前後端的技術洗禮，看到六角推出的後端資料庫體驗營</p>
+<p>實在太佛了，所以重拾之前學到的ＨＥＸＯ架站，開始自己的學習文章撰寫紀錄</p>
+<p>這是一個 PostgreSQL 的資料庫學習旅程</p>
+<span id="more"></span>
+
+<h3 id="什麼是-PostgreSQL"><a href="#什麼是-PostgreSQL" class="headerlink" title="什麼是 PostgreSQL ?"></a><font color=#FF0000>什麼是 PostgreSQL ?</font></h3><p>一種強大的開源關聯式資料庫管理系統（RDBMS），通常簡稱為 “Postgres”。它以強大的功能、穩定性和擴展性聞名，並且支援標準的 SQL 語法，而它有以下特點</p>
+<ol>
+<li><p>資料完整性和高可用性<br>支援事務處理（ACID 原則），能夠保證資料的完整性與一致性，適合需要高安全性和穩定性的應用程式。</p>
+</li>
+<li><p>高擴展性<br>PostgreSQL 支援多種擴展方式，例如可以通過插件系統添加新的功能，也可以自定義資料類型、操作符和函數。</p>
+</li>
+<li><p>豐富的數據類型<br>支援 JSON、XML、地理空間數據（透過 PostGIS 插件）、陣列等複雜數據類型，使得 PostgreSQL 不僅適用於結構化數據，還適合處理半結構化數據。</p>
+</li>
+<li><p>跨平台<br>可以運行在多種操作系統上，例如 Windows、Linux、macOS，因此擁有廣泛的適用性。</p>
+</li>
+<li><p>大規模應用<br>由於其高效能和穩定性，PostgreSQL 被許多大型企業、政府部門和金融機構廣泛採用。</p>
+</li>
+</ol>
+<p>而身為資料庫，<font color=#FF0000>最主要的是由三個結構主成</font></p>
+<ol>
+<li>資料表(table) - 整體資料，包含所有相關資料</li>
+<li>欄位(columns) - 定義資料的屬性，和 Data Type</li>
+<li>資料列(rows) - 橫向的資料集合，代表一筆完整資料</li>
+</ol>
+<p>而資料庫都會與資料庫設計有關，什麼是先? 什麼是後? 這是老師提供非常精美的流程圖</p>
+<p><img src="/personalprofile/images/table.jpg" alt="設計表"></p>
+<p>而這時候我們可以探討資料類型的定義(Data Type)的常用類型<br><img src="/personalprofile/images/datatype.jpg" alt="DataType"></p>
+<p>以目前的學習進度來說，這些常用的類型就綽綽有餘，所以這時候我們就開始學語法</p>
+<h3 id="CREATE-TABLE-新增資料表"><a href="#CREATE-TABLE-新增資料表" class="headerlink" title="CREATE TABLE 新增資料表"></a>CREATE TABLE 新增資料表</h3><pre><code class="hljs plaintext">CREATE TABLE user(
+	name VARCHAR(20),
+  	email VARCHAR(50),
+  	age INSERT
+);</code></pre>
+
+<p>我們先初始化我們想要的資料表，所以建立名稱為 user 的 table</p>
+<ol>
+<li>設定欄位名稱為 name，由字元組成，並可容納 20 個字元</li>
+<li>設定欄位名稱為 email，由字元組成，並可容納 50 個字元</li>
+<li>設定欄位名稱為 age，由數字組成</li>
+</ol>
+<h3 id="INSERT-DATA-新增資料內容"><a href="#INSERT-DATA-新增資料內容" class="headerlink" title="INSERT DATA 新增資料內容"></a>INSERT DATA 新增資料內容</h3><p>建立好資料表之後，就可以來建立資料內容啦<br>這時我們學到第二個語法，就是插入資料(insert)<br><font color=#FF0000>INSERT INTO 資料表名稱</font><br><font color=#FF0000>注意插入類型資料名稱需要使用單引號!，以及程式碼末端需要加 ; 號以示結束</font></p>
+<pre><code class="hljs plaintext">//插入單筆資料
+insert into users (name,email,age)
+VALUES(&#x27;小菜&#x27;,&#x27;123@gmail.com&#x27;,18)</code></pre>
+
+<pre><code class="hljs plaintext">//插入多筆資料
+insert into users (name,email,age)
+VALUES(&#x27;小菜&#x27;,&#x27;123@gmail.com&#x27;,18),
+      (&#x27;小華&#x27;,&#x27;123222@gmail.com&#x27;,20),
+      (&#x27;小麥&#x27;,&#x27;122@gmail.com&#x27;,27);</code></pre>
+
+<p>而我想插入資料並不是所有人都會用得到，在大公司的運轉下，大多數的人員都需要查詢功能的能力，這時候我們就介紹 SELECT 查詢功能的語法</p>
+<h3 id="SELECT-查詢"><a href="#SELECT-查詢" class="headerlink" title="SELECT 查詢"></a>SELECT 查詢</h3><pre><code class="hljs plaintext">-- 查詢所有欄位( * = 查詢所有欄位，顯示所有查詢後的欄位)
+-- 選擇 所有欄位 來自於 users的database
+SELECT * FROM users;
+
+-- 查詢特定欄位(只要姓名跟年齡)
+SELECT name,age FROM users;
+</code></pre>
+
+<p>這裡提供了基本查詢資料表的語法，而另外老師有教很特別的語法(AS 別名)<br>主要讓資料庫回傳資料時，我們可以用別名做稱，可以更好理解</p>
+<pre><code class="hljs plaintext">-- 查詢會員資料，設定退休年限資訊
+SELECT
+    name as 姓名,
+    age as 現在年齡,
+    65 - age AS 距離退休年紀
+    FROM
+ users</code></pre>
+
+<p>像下圖顯示，我們將資料庫多增加了運算邏輯，真的是有夠方便<br><img src="/personalprofile/images/as.jpg" alt="AS"></p>
+<p>而這時候我們需要大量的資料去練習，老師也給了 3C 電商網站的範例<br><img src="/personalprofile/images/3cdatabases.jpg" alt="電商商品"></p>
+<h3 id="WHERE-篩選"><a href="#WHERE-篩選" class="headerlink" title="WHERE 篩選"></a>WHERE 篩選</h3><p>我們的第一個需求，需要找類別是 3C 的產品</p>
+<pre><code class="hljs plaintext">SELECT name,price FROM products
+where category = &#x27;3C&#x27;;</code></pre>
+
+<p>找尋結果就會是這樣<br><img src="/personalprofile/images/3ccataglory.jpg"></p>
+<p>這時候就會有疑問<br><font color=#FF0000>SELECT name,price FROM products</font>代表就是查找資料庫的語法<br>但對資料庫來說，真正執行順序是什麼呢<br>這裡老師也有給予解答~~<br><img src="/personalprofile/images/SQLoperation.jpg"></p>
+<p>發現原來執行的順序是</p>
+<ol>
+<li>搜尋資料表</li>
+<li>設定篩選條件 where</li>
+<li>select 欄位名稱搜尋</li>
+</ol>
+<p>資料庫的執行順序並不是我們所輸入的語法順序而定</p>
+<p>這時候回到篩選語法 where，我們除了篩選名稱之外，也可以透過比較運算子，去篩選出價格的區間，我們可以透過情境題去練習</p>
+<p>情境 1:想知道那些商品快沒貨了，有沒有庫存小於 50 的商品</p>
+<pre><code class="hljs plaintext">SELECT name, stock
+FROM products
+WHERE stock &lt;50;</code></pre>
+
+<p>情境 2:想知道已經”上架”的”3C”產品<br>使用 AND &#x3D; 左右條件都符合 OR 左右條件之一符合</p>
+<pre><code class="hljs plaintext">SELECT name,price,stock
+FROM products
+WHERE status =&#x27;active&#x27;
+AND category =&#x27;3C&#x27;;</code></pre>
+
+<p>情境 3: 想幫家人買禮物，預算在 500~1000 元</p>
+<pre><code class="hljs plaintext">SELECT *
+FROM products
+WHERE discount_price BETWEEN 500 AND 1000;</code></pre>
+
+<p>情境 4: 想找出特定商品</p>
+<pre><code class="hljs plaintext">SELECT *
+FROM products
+WHERE category IN (&#x27;3C&#x27;,&#x27;配件&#x27;) --在category尋找3C跟配件的類別</code></pre>
+
+<p>情境 5: 想要排出商品(充電線、手機殼)</p>
+<pre><code class="hljs plaintext">SELECT *
+FROM products
+WHERE name NOT IN (&#x27;充電線&#x27;,&#x27;手機殼&#x27;) --在category尋找3C跟配件的類別</code></pre>
+
+<p>我們一般日常用到新增&#x2F;查詢，自然也會有 UPDATE(更新)跟 DELETE(刪除)語法</p>
+<h3 id="UPDATE-更新欄位"><a href="#UPDATE-更新欄位" class="headerlink" title="UPDATE 更新欄位"></a>UPDATE 更新欄位</h3><p>一樣我們直接用情境來練習<br>情境 1:調整特定商品價格</p>
+<pre><code class="hljs plaintext">--更改IPHONE16的價格為28000
+UPDATE products
+SET price =28000
+WHERE name = &#x27;iPhone 16&#x27;
+
+--更改多樣欄位
+UPDATE products
+SET price =28000,
+    name = &#x27;iPhone 16 PLUS&#x27;
+WHERE name = &#x27;iPhone 16&#x27;</code></pre>
+
+<p>情境 2:更新庫存:增加數量</p>
+<pre><code class="hljs plaintext">UPDATE products
+SET stock = stock + 50
+WHERE name = &#x27;充電線&#x27;;</code></pre>
+
+<h3 id="DELETE-刪除欄位"><a href="#DELETE-刪除欄位" class="headerlink" title="DELETE 刪除欄位"></a>DELETE 刪除欄位</h3><p>情境 1: 單筆刪除:刪除特定商品</p>
+<pre><code class="hljs plaintext">DELETE FROM products
+WHERE name = &#x27;iPhone 15&#x27;;
+</code></pre>
+
+<p>情境 2: 條件刪除:刪除類別為 3C 的產品</p>
+<pre><code class="hljs plaintext">DELETE FROM products
+WHERE category = &#x27;3C&#x27;;</code></pre>
+
+<p>情境 3: 條件刪除:多重條件刪除:刪除沒庫存且已下架的商品<br>我們可以先調整庫存</p>
+<pre><code class="hljs plaintext">--調整庫存
+update products
+set
+	stock = 0,
+    status =&#x27;inactive&#x27;
+WHERE name = &#x27;手機殼&#x27;;
+
+--刪除沒庫存且已下架的商品
+DELETE FROM products
+WHERE stock = 0 AND status =&#x27;inactive&#x27;;</code></pre>
+
+<hr>
+<h1 id="接下來，校長總共出了-15-道題目，讓我們依序來解題"><a href="#接下來，校長總共出了-15-道題目，讓我們依序來解題" class="headerlink" title="接下來，校長總共出了 15 道題目，讓我們依序來解題"></a>接下來，校長總共出了 15 道題目，讓我們依序來解題</h1><h2 id="模擬資料"><a href="#模擬資料" class="headerlink" title="模擬資料"></a>模擬資料</h2><p><img src="/personalprofile/images/goods.jpg" alt="模擬資料"></p>
+<p>如果考量有沒有上下架，程式碼會變得很冗長，故先忽略產品的 status 狀態，active or inactive 因素</p>
+<h4 id="情境-1：單品查詢"><a href="#情境-1：單品查詢" class="headerlink" title="情境 1：單品查詢"></a>情境 1：單品查詢</h4><p>客人：「這張北歐風雙人沙發多少錢？」<br>小美想查：想找到這張沙發的價格和庫存</p>
+<p>這時候要釐清小美的需求: 1.名字為北歐風雙人沙發 2.價格 3.庫存<br>所以我需要顯示此三個欄位，故為 SELECT <font color=#FF0000>name , price , stock</font><br>而篩選的條件就是名字為<font color=#FF0000>北歐風雙人沙發</font></p>
+<pre><code class="hljs plaintext">SELECT name , price, stock FROM goods
+WHERE name = &#x27;北歐風雙人沙發&#x27;;</code></pre>
+
+<h4 id="情境-2：單品查詢"><a href="#情境-2：單品查詢" class="headerlink" title="情境 2：單品查詢"></a>情境 2：單品查詢</h4><p>客人：「請列出 5000 元以下的櫃子有哪些？」<br>小美想查：找出櫃子類且價格在 5000 以下的商品</p>
+<p>第一步要先釐清需求，我們需要 1.低於 5000 2.種類為櫃子的商品<br>我們需要從所有商品開始查找，所以為 SELECT * FROM goods 開始<br>篩選條件為種類是櫃子和價格需要低於 5000 去設定</p>
+<pre><code class="hljs plaintext">SELECT * FROM goods
+WHERE category = &#x27;櫃子&#x27; AND price &lt; 5000;</code></pre>
+
+<h4 id="情境-3：庫存確認"><a href="#情境-3：庫存確認" class="headerlink" title="情境 3：庫存確認"></a>情境 3：庫存確認</h4><p>客人：「日式雙人床架還有貨嗎？」<br>小美想查：確認日式雙人床架的庫存狀況</p>
+<p>釐清需求:確認日是雙人床價的庫存，所以顯示條件為 name,stock</p>
+<pre><code class="hljs plaintext">SELECT name,stock FROM goods
+WHERE name = &#x27;日式雙人床架&#x27;;</code></pre>
+
+<h4 id="邏輯運算-AND："><a href="#邏輯運算-AND：" class="headerlink" title="邏輯運算 AND："></a>邏輯運算 AND：</h4><h4 id="情境-4：庫存確認"><a href="#情境-4：庫存確認" class="headerlink" title="情境 4：庫存確認"></a>情境 4：庫存確認</h4><p>客人：「想找 4 萬以下，而且有現貨的沙發」<br>小美想查：要同時符合：是沙發、4 萬以下、有庫存</p>
+<p>需求為: 同時符合 1. 沙發 2.價格 4 萬以下 3.有庫存<br>我們使用 AND 同時滿足三個條件，得到的條件是北歐風雙人沙發</p>
+<pre><code class="hljs plaintext">SELECT * FROM goods
+WHERE category = &#x27;沙發&#x27; AND price &lt;40000 AND stock&gt; 0;</code></pre>
+
+<h3 id="情境-5：特價且有貨"><a href="#情境-5：特價且有貨" class="headerlink" title="情境 5：特價且有貨"></a>情境 5：特價且有貨</h3><p>客人：「沙發有哪些特價且現貨的品項？」<br>小美想查：要找到沙發類且有特價（原價大於優惠價）且還有庫存的商品</p>
+<p>需求為:同時符合 1. 特價(原價大於優惠價) 2. 有庫存的商品的沙發</p>
+<pre><code class="hljs plaintext">SELECT * FROM goods
+WHERE category = &#x27;沙發&#x27; AND discount_price &lt; price  AND stock &gt; 0;</code></pre>
+
+<h3 id="邏輯運算-OR："><a href="#邏輯運算-OR：" class="headerlink" title="邏輯運算 OR："></a>邏輯運算 OR：</h3><h3 id="情境-6：多分類查詢"><a href="#情境-6：多分類查詢" class="headerlink" title="情境 6：多分類查詢"></a>情境 6：多分類查詢</h3><p>客人：「我要找櫃子或桌子」<br>小美想查：要找出櫃子類或桌子類的商品</p>
+<p>這裡的需求只要櫃子或桌子 所以我們用 OR，兩者之一只藥都有類別都可以顯示</p>
+<pre><code class="hljs plaintext">SELECT * FROM goods
+WHERE category = &#x27;桌子&#x27;  OR  category = &#x27;櫃子&#x27;</code></pre>
+
+<h3 id="情境-7：指定商品"><a href="#情境-7：指定商品" class="headerlink" title="情境 7：指定商品"></a>情境 7：指定商品</h3><p>客人：「北歐風雙人沙發和貓抓皮 L 型沙發哪個還有貨？」<br>小美想查：要找出這兩張特定沙發的庫存狀況</p>
+<p>需求: 需要知道此沙發的庫存，所以顯示名稱跟庫存狀態</p>
+<pre><code class="hljs plaintext">SELECT name,stock FROM goods
+WHERE name = &#x27;北歐風雙人沙發&#x27;  OR  name = &#x27;貓抓皮L型沙發&#x27;</code></pre>
+
+<h3 id="IN-運算："><a href="#IN-運算：" class="headerlink" title="IN 運算："></a>IN 運算：</h3><h3 id="情境-8：多分類查詢"><a href="#情境-8：多分類查詢" class="headerlink" title="情境 8：多分類查詢"></a>情境 8：多分類查詢</h3><p>客人：「客廳的家具有哪些？我要看沙發、櫃子跟桌子」<br>小美想查：要找出沙發、櫃子和桌子這三種分類的商品</p>
+<p>需求:在類別裡有沙發、櫃子和桌子，可以用 IN 去篩選條件</p>
+<pre><code class="hljs plaintext">SELECT * FROM products
+WHERE category IN (&#x27;沙發&#x27;,&#x27;櫃子&#x27;,&#x27;桌子&#x27;);</code></pre>
+
+<h3 id="情境-9：特定商品"><a href="#情境-9：特定商品" class="headerlink" title="情境 9：特定商品"></a>情境 9：特定商品</h3><p>客人：「電腦辦公椅和餐椅四入組的價格是多少？」<br>小美想查：要找出這兩款椅子的價格</p>
+<p>需求: 找到名字為電腦辦公椅以及餐椅四人組的價格(有庫存最好)</p>
+<pre><code class="hljs plaintext">SELECT name,price,stock FROM products
+WHERE name IN (&#x27;電腦辦公椅&#x27;,&#x27;餐椅四入組&#x27;);</code></pre>
+
+<h3 id="BETWEEN："><a href="#BETWEEN：" class="headerlink" title="BETWEEN："></a>BETWEEN：</h3><h3 id="情境-10：特定商品"><a href="#情境-10：特定商品" class="headerlink" title="情境 10：特定商品"></a>情境 10：特定商品</h3><p>客人：「想找 10000 到 20000 之間的商品有哪些？」<br>小美想查：列出這個價格區間的所有商品</p>
+<p>需求，使用 BETWEEN 找出價格區間所有的商品</p>
+<pre><code class="hljs plaintext">SELECT * FROM products
+WHERE price BETWEEN 10000 AND 20000;</code></pre>
+
+<h3 id="情境-11：庫存區間"><a href="#情境-11：庫存區間" class="headerlink" title="情境 11：庫存區間"></a>情境 11：庫存區間</h3><p>主管：「請列出庫存在 5 到 15 之間的商品」<br>小美想查：列出庫存數量在這個範圍的商品</p>
+<p>呈上提，裡用 BETWEEN 做區間篩選</p>
+<pre><code class="hljs plaintext">SELECT * FROM products
+WHERE stock BETWEEN 5 AND 15;</code></pre>
+
+<h3 id="NOT-IN："><a href="#NOT-IN：" class="headerlink" title="NOT IN："></a>NOT IN：</h3><h3 id="情境-12：排除商品"><a href="#情境-12：排除商品" class="headerlink" title="情境 12：排除商品"></a>情境 12：排除商品</h3><p>主管：「列出除了沙發和床架以外的商品」<br>小美想查：要找出不是沙發和床架的商品</p>
+<p>需求: 這裡使用排除，所以用 NOT IN，記得篩選的主要條件改為 category</p>
+<pre><code class="hljs plaintext">SELECT * FROM products
+WHERE category NOT IN (&#x27;沙發&#x27;,&#x27;床架&#x27;);</code></pre>
+
+<h3 id="更新和刪除："><a href="#更新和刪除：" class="headerlink" title="更新和刪除："></a>更新和刪除：</h3><h3 id="情境-13：調整價格"><a href="#情境-13：調整價格" class="headerlink" title="情境 13：調整價格"></a>情境 13：調整價格</h3><p>主管：「北歐風雙人沙發要調降 2000 元」<br>小美想查：要如何更新這張沙發的價格</p>
+<p>需求: 將特定物件價格調降 2000<br>這裡要注意，使用 UPDATE DATABASE<br>然後 set price &#x3D; price -2000 (我不知道原始價格多少，但我知道要調降 2000)</p>
+<p>再使用 SELECT * FROM 　 goods 發現北歐風雙人沙發由 39900 &#x3D;&gt; 37900</p>
+<pre><code class="hljs plaintext">UPDATE goods
+SET price =price -2000
+WHERE name = &#x27;北歐風雙人沙發&#x27;;</code></pre>
+
+<h3 id="情境-14：更新庫存"><a href="#情境-14：更新庫存" class="headerlink" title="情境 14：更新庫存"></a>情境 14：更新庫存</h3><p>主管：「電腦辦公椅進了 5 張」<br>小美想查：要如何增加這款椅子的庫存數量</p>
+<p>需求: 將特定款的庫存增加，一樣如同上方的題目，我用 stock &#x3D; stock + 5 增加庫存<br>庫存將由 20&#x3D;&gt;25</p>
+<pre><code class="hljs plaintext">UPDATE goods
+SET stock = stock +5
+WHERE name = &#x27;電腦辦公椅&#x27;;</code></pre>
+
+<h3 id="情境-15：清除資料"><a href="#情境-15：清除資料" class="headerlink" title="情境 15：清除資料"></a>情境 15：清除資料</h3><p>主管：「要清掉兒童床架和電競書桌的資料」<br>小美想查：要如何刪除這兩項商品</p>
+<p>需求:刪掉特定產品，是兩者皆要刪除 所以可以使用 OR，也可以使用 IN</p>
+<pre><code class="hljs plaintext">DELETE FROM goods;
+WHERE name = &#x27;兒童床架&#x27; OR name = &#x27;電競書桌&#x27;;
+
+或使用IN
+DELETE FROM goods;
+WHERE name IN = (&#x27;兒童床架,&#x27;電競書桌&#x27;);
+</code></pre>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/personalprofile/2024/12/11/Render%E9%83%A8%E5%B1%ACPostgreSQL%E9%80%A3%E6%8E%A5DBeaver/" title="Render部屬PostgreSQL連接DBeaver"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: Render部屬PostgreSQL連接DBeaver</span></a><a class="button is-default" href="/personalprofile/2024/08/01/%E7%B6%B2%E8%B7%AF%E5%9F%BA%E7%A4%8E%E6%A6%82%E8%AB%96/" title="當你輸入一個網址的時候，會發生什麼事?"><span class="has-text-weight-semibold">Next: 當你輸入一個網址的時候，會發生什麼事?</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="https://github.com/GustavoFringgg/personalprofile" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/GustavoFringgg"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com/noreg0361957"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><a title="linkedin" target="_blank" rel="noopener nofollow" href="//www.linkedin.com/in/Derek-Tsai"><i class="iconfont icon-linkedin"></i></a><!-- 脸书--></section><p><span>Copyright ©</span><span> 秉宏 2025</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/personalprofile/js/jquery-3.6.1.min.js"></script><script src="/personalprofile/js/jquery-fancybox.min.js"></script><script src="/personalprofile/js/img_zoom.js"></script><script src="/personalprofile/js/post.js"></script></body></html>
