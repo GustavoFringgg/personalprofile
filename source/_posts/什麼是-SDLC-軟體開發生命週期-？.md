@@ -7,8 +7,6 @@ tags:
 
 ![](https://images.unsplash.com/photo-1508020963102-c6c723be5764?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2t5fGVufDB8fDB8fHww)
 
-## 前言
-
 在網路文章充斥著 AI 將會取代軟體工程師的言論中，不經意看到網友說了"能處理整個 SDLC 周期的工程師目前不會被取代"
 
 這段話激起我的好奇心，讓小白的我決定來初步了解何謂 SDLC

@@ -19,14 +19,6 @@ tags:
 
 --
 
-```js sample.js 測試
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-
 首先我們為了要部屬 PostgreSQL，直接上 render 註冊並開啟專案
 最後他會給你一組私人金鑰
 
@@ -54,4 +46,4 @@ PGPASSWORD= 你的密碼 psql -h <font color=#FF0000>你的 Host</font> -U 你�
 
 <img src="https://firebasestorage.googleapis.com/v0/b/theodore-s-blog.appspot.com/o/DBeaver%E9%80%A3%E6%8E%A5reder%20PosgreSQL%2F1733928869828.jpg?alt=media&token=6151a54f-9c45-4cad-94fb-9e3690167177" alt="範例圖"  width="800">
 
-只能說當下真的是有滿滿的感動，此篇記錄了自己的學習過程，也希望能幫助到需要幫助的人
+此篇記錄了自己的學習過程，也希望能幫助到需要幫助的人
